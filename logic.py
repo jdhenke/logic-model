@@ -25,70 +25,55 @@ SOFTWARE.
 
 def main():
 
-    # Start with basic structure:
-    # A supports C
-    # B refutes C
-    a = Claim("A")
-    b = Claim("B")
-    c = Claim("C")
-    i1 = Implies(a, c)
-    i2 = ImpliesNot(b, c)
-    print 'Basic Structure...'
-    print '\t%s' % (c, )
-    
-    # Now, we assert the ImpliesNot from b to c is false
-    # In other words, we feel that while b may be true,
-    # it has no bearing on C
-    r1 = Claim("R1")
-    i3 = ImpliesNot(r1, i2)
-    print "After Refuting B's Implication on C..."
-    print '\t%s' % (i2, )
-    print '\t%s' % (c, )
+    c1 = Claim("Congressman C supports policy P")
+    c2 = Claim("Yeah, he voted for bill B")
+    c3 = Claim("No way, his hometown is X")
+    r1 = Pro(c2, c1) #: c2 correct fact which supports the claim
+    r2 = Con(c3, c1) #: c3 correct fact that's maybe not applicable
+    print "One pro and one con yields:\n\t%s" % c1
 
-    # Now, we pose the opposite argument
-    # Namely, we feel that b does in fact refute c
-    r2 = Claim("R2")
-    i4 = Implies(r2, i2)
-    print 'Countering this with an argument that B does refute C...'
-    print '\t%s' % (i2, )
-    print '\t%s' % (c, )
+    # Now, c3 is a true statement, however people will have different opinions
+    # on how it relates to the argument. They are in essence for or against
+    # it's **Relation** to the claim.
 
-    i5 = ImpliesNot(r2, b)
-    i6 = Implies(r2, b)
+    print 'Initial relation weight of con: %s' % r2.get_weight()
 
-    # Display the entire network
-    print 'For clarity, he is the final resulting set of assertions...'
-    print
-    print a
-    print b
-    print c
-    print r1
-    print r2
-    print i1
-    print i2
-    print i3
-    print i4
+    c4 = Claim("I don't like stereotyping")
+    r3 = Con(c4, r2)
+    c5 = Claim("This city historically produces many P supporters")
+    r4 = Pro(c5, r2)
+
+    print "Weakening the weight of the Con's **Relation** yields:\n\t%s" % c1
+    print 'Reduced relation weight of con: %s' % r2.get_weight()
+
+    # It is weakened becuase, by default, assertions are accepted as 
+    # fully weighted. Once they have children pros or cons, those children
+    # dictate their parent's weight.
+
+    # Intuitively, this should all be sensible. Reducing the weight of
+    # an argument in conflict with the claim should strengthen the claim.
+
+    # Also, be careful of notation. Con as described above is the Claim,
+    # but note that the class itself is a Relation.
 
 class Assertion(object):
     
     def __init__(self):
-        self.conditions = set() #: relations
+        self.relations = set() #: relations to children only
     
-    def get_prob(self):
+    def get_weight(self):
         
-        achieved_probability = 0
-        possible_probability = 0
-        for cond in self.conditions:
-            achieved_probability += cond.get_prob() * cond.get_output()
-            possible_probability += cond.get_prob()
-        if possible_probability == 0:
+        actual_weight = 0
+        possible_weight = 0
+        for r in self.relations:
+            actual_weight += r.get_weight() * r.get_output()
+            possible_weight += r.get_weight()
+        if possible_weight == 0:
             return 1.0
-        return achieved_probability / possible_probability
-
-    def add_condition(self, relation):
-        self.conditions.add(relation)
-
-
+        return actual_weight / possible_weight
+        
+    def add_relation(self, relation):
+        self.relations.add(relation)
 
 class Claim(Assertion):
     
@@ -97,41 +82,45 @@ class Claim(Assertion):
         self.text = text
 
     def __str__(self):
-        return '%s is true with probability %.2f' % (self.text, self.get_prob())
+        return '%s is true with weight %.2f' % (self.text, self.get_weight())
 
     def get_text(self):
         return self.text
 
 class Relation(Assertion):
+    '''relates child to parent in some way'''
     
-    def __init__(self, input, output):
+    def __init__(self, child, parent):
         super(Relation, self).__init__()
-        self.input = input
-        self.output = output
-        self.output.add_condition(self)
+        self.child = child
+        self.parent = parent
+        self.parent.add_relation(self)
 
-class Implies(Relation):
+class Pro(Relation):
+    '''child supports parent'''
     
     def get_output(self):
-        return self.input.get_prob()
+        return self.child.get_weight()
 
     def __str__(self):
-        return '%s implies %s with probability %.2f' %\
-            (self.input.get_text(), self.output.get_text(), self.get_prob())
+        return '%s implies %s with weight %.2f' %\
+            (self.child.get_text(), self.parent.get_text(), self.get_weight())
+    
     def get_text(self):
-        return '(%s ==> %s)' % (self.input.get_text(), self.output.get_text())
+        return '(%s ==> %s)' % (self.child.get_text(), self.parent.get_text())
 
-class ImpliesNot(Relation):
+class Con(Relation):
+    '''child refutes parent'''
     
     def get_output(self):
-        return 1.0 - self.input.get_prob()
+        return 1.0 - self.child.get_weight()
 
     def __str__(self):
-        return '%s implies NOT %s with probability %.2f' %\
-            (self.input.get_text(), self.output.get_text(), self.get_prob())
+        return '%s implies NOT %s with weight %.2f' %\
+            (self.child.get_text(), self.parent.get_text(), self.get_weight())
 
     def get_text(self):
-        return '(%s ==> NOT(%s))' % (self.input.get_text(), self.output.get_text())
+        return '(%s ==> NOT(%s))' % (self.child.get_text(), self.parent.get_text())
 
 if __name__ == '__main__':
     main()
