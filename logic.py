@@ -24,6 +24,7 @@ SOFTWARE.
 '''
 
 def main():
+    '''walk through an example'''
 
     c1 = Claim("Congressman C supports policy P")
     c2 = Claim("Yeah, he voted for bill B")
@@ -57,6 +58,7 @@ def main():
     # but note that the class itself is a Relation.
 
 class Assertion(object):
+    '''fundamental unit of an argument'''
     
     def __init__(self):
         self.relations = set() #: relations to children only
@@ -76,13 +78,14 @@ class Assertion(object):
         self.relations.add(relation)
 
 class Claim(Assertion):
+    '''primitive assertion containing text'''
     
     def __init__(self, text):
         super(Claim, self).__init__()
         self.text = text
 
     def __str__(self):
-        return '%s is true with weight %.2f' % (self.text, self.get_weight())
+        return '%s has weight %.2f' % (self.text, self.get_weight())
 
     def get_text(self):
         return self.text
