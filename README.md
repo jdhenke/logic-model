@@ -36,23 +36,23 @@ r3 = Con(c4, r2)  # refute a **Relation**
 r4 = Pro(c5, r2)  # support a **Relation**
 ```
 
-To me, this is logical.
-No one can dispute that Congressman C was born in state S.
+Intuition: No one can dispute that Congressman C was born in state S.
 To dispute that fact would be to sidestep the true issue.
-You don't like this Assertions *use* in this argument.
+You don't like this Assertion's *use* in this argument.
 Put differently, you don't like it's *Relation* to another Assertion.
 
 In this way, we can create a funny DAG of Assertions, in which Relations may originate from or point to other Assertions.
 
 ## Weights
 Using Pros and Cons, I also hypothesize one way to establish the validity of each Assertion. 
-I make no claims about the validity of these validities, however they seem intuitive to me at the very least.
-Also, let how the valid an Assertion is be thought of as how much *Weight* it has.
+I make no claims about the validity of these validities, however they seem intuitive at the moment.
+Also, let how valid an Assertion is be thought of as how much *Weight* it has.
 
 Here's my intuition:
 
 1. The weight of an Assertion is a function of the Relations pointing to it.
-2. Since Relations are themselves Assertions, and thus have weight, a Relation's weight should scale with its impact on its target's weight.
+2. Since Relations are themselves Assertions, and thus have weight, a Relation's impact on its target's weight should scale with its own weight. 
+In other words, Relations we are confident in should matter more.
 
 Some increasingly complex examples
 * A Claim with many Pros should have a high weight.
