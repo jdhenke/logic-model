@@ -48,12 +48,13 @@ I make no claims about the validity of these validities, however they seem intui
 ### Terminology
 
 * Let how valid an Assertion is be thought of as how much *Weight* it has.
+* Weights are in the range [0,1].
 * If assertion A supports assertion B, i.e. `rel = Pro(A,B)`, 
 then 
   * A is the **child** of the relation
   * B the **parent** of the relation
   * the relation can be considered one of B's **child relations**.
-* each relation has some output as a function of it's input in the range [0,1]
+* each relation has some **output** as a function of it's input in the range [0,1]
   * A Pro outputs its child's weight
   * A Con outputs the compliment of its child's weight 
 
