@@ -74,32 +74,25 @@ This is then normalized to be in the range [0,1], meaning it is divided by the s
 Run `logic.py` to see an example of this.
 
 ## Big Ideas
-Here are some thoughts on how I would flush this paradigm out:
+Here are some thoughts on how I would flush this paradigm out.
 
-I would abstract Pros and Cons into just one of many **dimensions** of relations. 
-Imagine overlaying other Relations on top of a DAG of Claims, Pros and Cons.
-Perhaps this would make Pros and Cons a primary dimensions rather than one of many.
+More **emergent properties** could potentially also be derived for every Assertion. 
+Weight is already one we've explored.
+Contentiousness could be another.
 
-**Functions** would be just another type of Relation. 
-Perhaps Claims could be tagged with different kinds of data i.e. "apples #cost:$5"
-Functions could have any number of *input* and *output* assertions.
-Pros and Cons could be considered a function, with 1 input and 1 output.
-Summation could be another functino operating on many Claims and producing its own Claim as output.
-Each specified input might have to meet some predicate condition, 
-i.e. Summation must be able to identify a number in its input claims
+To abstract my design even further, Relations could be transformed to be more like **functions**.
+Functions would take Assertions as arguments.
+Output is tricky, and I'm torn.
+On one hand, the output could simply be represented as the value of the Assertion.
+On the other, it could in turn produce an arbitary DAG of its own, 
+but this DAG would need to be linked back to the function it created.
 
-**Loops** introduce an interesting concept of what I feel is a temporal element.
-It seems a tree is a static DAG of Assertions.
-As it relates to the **Society of Mind**, this would pertain to a snapshot of the brain.
-This is great, but not the whole picture. 
-Processes often wax and wane in importance and modeling that would require a loop.
-Perhaps this could be abstracted as a function which requires
+**Loops** would be a kind of function. 
+I'd like to think more about the desired result from loops.
 
-1. Assertions which are all a function of some variable
-2. 1 or more output claims which depend on the above Assertions
+## Cool Questions
+1. How would a recursive argument like induction be modeled in this paradigm?
+2. How would a self fulfilling argument be modeled?
+3. Could we create a sort of differential equation of Assertions we could step through and see how the lay of the land changes at teach time step?
 
-Then this looping function wiggles that variable, aggregating the results of the output Assertions into one output Assertion of its own.
-
-
-**User Defined Functions** seems tricky without introducing technical concepts.
 
