@@ -1,8 +1,6 @@
 Logic
 =====
 
-If I had to create Justify in a weekend, here's how I'd do it.
-
 ## Assertions
 Everything is an **Assertion**, the fundamental unit of an argument.
 
