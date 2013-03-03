@@ -90,6 +90,11 @@ but this DAG would need to be linked back to the function it created.
 **Loops** would be a kind of function. 
 I'd like to think more about the desired result from loops.
 
+**User defined functions** could encapsulate a DAG of Assertions to essentially capture its input and output.
+Visually, consider circling some part of a DAG. 
+The edges "entering" the graph would be inputs.
+The edges "leaving" the graph would be outputs.
+
 ## Cool Questions
 1. How would a recursive argument like induction be modeled in this paradigm?
 2. How would a self fulfilling argument be modeled?
