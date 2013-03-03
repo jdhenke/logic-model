@@ -96,9 +96,12 @@ Visually, consider circling some part of a DAG.
 The edges "entering" the graph would be inputs.
 The edges "leaving" the graph would be outputs.
 
+Seems I'm leaning toward some kind of combinator design.
+
 ## Cool Questions
 1. How would a recursive argument like induction be modeled in this paradigm?
 2. How would a self fulfilling argument be modeled?
 3. Could we create a sort of differential equation of Assertions we could step through and see how the lay of the land changes at teach time step?
+4. Could we create relations to encapsulte typical argumentative paradigms like induction, contrapositive, proof by contradiction, etc...
 
 
