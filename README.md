@@ -41,3 +41,27 @@ No one can dispute that Congressman C was born in state S.
 To dispute that fact would be to sidestep the true issue.
 You don't like this Assertions *use* in this argument.
 Put differently, you don't like it's *Relation* to another Assertion.
+
+In this way, we can create a funny DAG of Assertions, in which Relations may originate from or point to other Assertions.
+
+## Weights
+Using Pros and Cons, I also hypothesize one way to establish the validity of each Assertion. 
+I make no claims about the validity of these validities, however they seem intuitive to me at the very least.
+Also, let how the valid an Assertion is be thought of as how much *Weight* it has.
+
+Here's my intuition:
+
+1. The weight of an Assertion is a function of the Relations pointing to it.
+2. Since Relations are themselves Assertions, and thus have weight, a Relation's weight should scale with its impact on its target's weight.
+
+Some increasingly complex examples
+* A Claim with many Pros should have a high weight.
+* A Claim with equal Pros and Cons should have weight of 50%.
+* A Claim with one undisputed Pro and one Con with a Pro and a Con itself, should be over 50% because the Pro is presumed to be more valid than the Con.
+
+Algorithm
+A Relation is a child relation of an Assertion if it points to that Assertion.
+A Relation's output scales with its support for its parent.
+
+Considering those thoughts, the weight is then computed as sum of each child relation's output scaled by that relation's weight.
+This is then normalized to be in the range [0,1], meaning it is divided by the sum of each relation.
