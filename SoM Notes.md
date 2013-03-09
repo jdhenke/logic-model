@@ -64,3 +64,19 @@ Where does these contexts come from? I don't think a machine would get distracte
   - Again there is a **temporal element**
 
 ## Chapter 5
+- 5.1 Circular Causality
+  - Two goals can support eachother.
+  - **Possible Model**
+  - Last paragraph is very interesting, describing DAGs as oversimplified.
+- 5.2 Unanswerable Questions
+  - Poses question: how can we know when an answer is properly answered?
+  - ^Unit testing???
+- 5.5 Fashion and Style
+  - Fredkin's Paradox - increasingly hard to choose between two increasingly attractive choices
+  - **Possible Model**
+  - How do we model the *difficulty* of a decision.
+- 5.6 Traits
+  - Mentions **common sense knowledge** referring to unstated expressions.
+  - Could we use common sense knowledge to verify primitives in Jusify?
+  - Refers to human nature.
+  - Can we model common paradigms i.e. "hostility evokes defensiveness"
