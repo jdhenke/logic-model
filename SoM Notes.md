@@ -41,3 +41,5 @@ Where does these contexts come from? I don't think a machine would get distracte
 - 3.2 Noncompromise
   - Principle of Noncompromise
   - References the notion of "taking over" - what does that mean?
+- 3.6 Pain and Pleasure Simplified
+  - Seems to indicate that pain and pleasure *take priority* over other agents. How can we model that? How does that come to be?
