@@ -80,3 +80,6 @@ Where does these contexts come from? I don't think a machine would get distracte
   - Could we use common sense knowledge to verify primitives in Jusify?
   - Refers to human nature.
   - Can we model common paradigms i.e. "hostility evokes defensiveness"
+
+## Chapter 6
+- 
