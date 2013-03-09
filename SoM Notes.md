@@ -43,3 +43,24 @@ Where does these contexts come from? I don't think a machine would get distracte
   - References the notion of "taking over" - what does that mean?
 - 3.6 Pain and Pleasure Simplified
   - Seems to indicate that pain and pleasure *take priority* over other agents. How can we model that? How does that come to be?
+
+## Chapter 4
+- 4.2 One Self or Many
+  - Can we include some kindof "Voyeur-Puppeteer?"
+  - Could we model multiple selves?
+    - Different personalities within an argument?
+- 4.4 The Conservative Self
+  - Keeps us from changing to rapidly
+  - Could we model this as an *anti-catalyst* in a discussion in Justify?
+- 4.5 Exploitation
+  - **Possible Model** - Work exploited Anger to stop Sleep. How do agents translate to Justify and how can this exploitation occur!?
+  - This is all **fluid**; no one agent should be able to dominate
+    - Perhaps at an instant in time, one *can* dominate
+    - Between timesteps, not so much
+    - **Where does the impulse come from? Externally or internally!?**
+- 4.8 Ideals
+  - Describes older agencies affecting the creation of newer ones.
+  - Can Justify "create" agencies?
+  - Again there is a **temporal element**
+
+## Chapter 5
