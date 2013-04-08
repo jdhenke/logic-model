@@ -1,5 +1,4 @@
-Logic
-=====
+My attempt to build [Justify](http://justify-app.appspot.com/)-like functionality from scratch.
 
 ## Assertions
 Everything is an **Assertion**, the fundamental unit of an argument.
