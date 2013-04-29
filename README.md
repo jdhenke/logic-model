@@ -10,7 +10,20 @@ Arguments are modelled as a pseudo-directed-graph with the following paradigms.
   - Edges represent **Relations** between Assertions, such as **implies**.
     - Note: Edges themselves are Assertions. Therefore, an edge can originate and/or terminate at another edge.
 
-## Quick Examples
+## Getting Started
+
+### Installation
+In `apollo`, use [virtualenv](https://pypi.python.org/pypi/virtualenv) to install [sympy](https://github.com/sympy/sympy), then run `apollo.py`.
+
+```bash
+virtualenv env
+source env/bin/activiate
+pip install sympy
+python apollo.py
+```
+
+### Examples
+
 
 ## License
 
