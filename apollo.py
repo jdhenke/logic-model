@@ -1,4 +1,4 @@
-#!/usr/bin/python
+import sympy
 
 '''
 Copyright (c) 2013 Joseph Henke
