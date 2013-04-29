@@ -1,14 +1,32 @@
 Apollo
 ======
 
-## Abstract
-Apollo provides a framework to model arguments. Here are the rules.
-1. Everything is an assertion.
-2. Relations connection assertions.
+Apollo provides a framework to model arguments.
+
+## Philosophy
+Arguments are modelled as a pseudo-directed-graph with the following paradigms.
+  - Everything is an **Assertion**
+  - Nodes represent atomic Assertions
+  - Edges represent **Relations** between Assertions, such as **implies**.
+    - Note: Edges themselves are Assertions. Therefore, an edge can originate and/or terminate at another edge.
+
+## Getting Started
+
+### Installation
+In `apollo`, use [virtualenv](https://pypi.python.org/pypi/virtualenv) to install [sympy](https://github.com/sympy/sympy), then run `apollo.py`.
+
+```bash
+virtualenv env
+source env/bin/activiate
+pip install sympy
+python apollo.py
+```
+
+### Examples
+
 
 ## License
 
-'''
 Copyright (c) 2013 Joseph Henke
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
@@ -28,5 +46,3 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
 SOFTWARE.
-
-'''
