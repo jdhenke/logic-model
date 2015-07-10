@@ -1,48 +1,66 @@
-Apollo
-======
+# Logic Model
 
-Apollo provides a framework to model arguments.
+> Toy modeling of arguments with symbolically derived weights.
 
-## Philosophy
-Arguments are modelled as a pseudo-directed-graph with the following paradigms.
-  - Everything is an **Assertion**
-  - Nodes represent atomic Assertions
-  - Edges represent **Relations** between Assertions, such as **implies**.
-    - Note: Edges themselves are Assertions. Therefore, an edge can originate and/or terminate at another edge.
+## Setup
 
-## Getting Started
-
-### Installation
-In `apollo`, use [virtualenv](https://pypi.python.org/pypi/virtualenv) to install [sympy](https://github.com/sympy/sympy), then run `apollo.py`.
+**Install** [python](https://www.python.org/) and  [virtualenv](https://pypi.python.org/pypi/virtualenv), then **run** the setup script:
 
 ```bash
-virtualenv env
-source env/bin/activiate
-pip install sympy
-python apollo.py
+sh setup.sh
 ```
 
-### Examples
+## Running
 
+```bash
+# use virtualenv with required modules
+source env/bin/activate
+# run simple main function in model
+python -i model.py
+```
 
-## License
+## Modeling Explanation
 
-Copyright (c) 2013 Joseph Henke
+Everything is an *Assertion*.
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell 
-copies of the Software, and to permit persons to whom the Software is furnished
-to do so, subject to the following conditions:
+A *Claim* is an atomic Assertion that is just text.
 
-The above copyright notice and this permission notice shall be included in
-all copies or substantial portions of the Software.
+A *Relation* indicates that one Assertion either supports or refutes another
+Assertion.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
-SOFTWARE.
+Every Assertion has a *weight*, which is a derived measure of how true that
+assertion is between 0 and 1, where 0 is false and 1 is true. An assertion that
+has no relations pointing to it is assumed to be true. Otherwise, the weight of
+an assertion is the average of each of its relation's support scaled by each relation's own weight
+
+```python
+# create a basic claim
+c = Claim('main claim')
+# add a few supporting claims
+r1 = Pro(Claim('supporting claim 1'), c)
+_ = Pro(Claim('supporting claim 2'), c)
+# add a refuting claim
+_ = Con(Claim('refuting claim 1'), c)
+# print the derived weight of the original claim
+print "Main Claim's Derived Weight: %s" % (c.get_weight(), )
+# ==> 2/3
+```
+
+Now, the weird bit is that **Relations are Assertions**. That means
+**Relations** can support, refute, be supported by and be refuted by other
+Assertions.
+
+```python
+# continuing from above...
+#
+# now debate over how reasonable it is to support c with "supporting claim 1"
+_ = Con(Claim('refuting claim 2'), r1)
+_ = Con(Claim('refuting claim 3'), r1)
+_ = Pro(Claim('supporting claim 4'), r1)
+# print the new derived weight of the original claim
+print "Main Claim's Derived Weight: %s" % (c.get_weight(), )
+# ==> 4/7
+```
+
+Note that the new derived weight for the main claim is lower (4/7 < 2/3)
+because one of the relations that supports it came under fire.
