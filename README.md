@@ -33,8 +33,8 @@ Assertion.
 Every Assertion has a *weight*, which is a derived measure of how true that
 Assertion is between 0 and 1, where 0 is false and 1 is true. An Assertion that
 has no Relations pointing to it is assumed to be true. Otherwise, the weight of
-an Assertion is the average of each of its Relation's support scaled by each
-Relation's own weight.
+an Assertion is derived from the support each incoming Relation provides, scaled
+by that Relation's own weight.
 
 ```python
 # create a basic claim
