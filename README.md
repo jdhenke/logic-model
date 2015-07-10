@@ -4,7 +4,9 @@
 
 ## Setup
 
-**Install** [python](https://www.python.org/) and  [virtualenv](https://pypi.python.org/pypi/virtualenv), then **run** the setup script:
+**Install** [python](https://www.python.org/) and
+[virtualenv](https://pypi.python.org/pypi/virtualenv), then **run** the setup
+script:
 
 ```bash
 sh setup.sh
@@ -13,9 +15,9 @@ sh setup.sh
 ## Running
 
 ```bash
-# use virtualenv with required modules
+# always use virtualenv to access required modules installed at setup
 source env/bin/activate
-# run simple main function in model
+# run example script below, leaving REPL open to play with
 python -i model.py
 ```
 
@@ -29,9 +31,10 @@ A *Relation* indicates that one Assertion either supports or refutes another
 Assertion.
 
 Every Assertion has a *weight*, which is a derived measure of how true that
-assertion is between 0 and 1, where 0 is false and 1 is true. An assertion that
-has no relations pointing to it is assumed to be true. Otherwise, the weight of
-an assertion is the average of each of its relation's support scaled by each relation's own weight
+Assertion is between 0 and 1, where 0 is false and 1 is true. An Assertion that
+has no Relations pointing to it is assumed to be true. Otherwise, the weight of
+an Assertion is the average of each of its Relation's support scaled by each
+Relation's own weight.
 
 ```python
 # create a basic claim
