@@ -31,10 +31,9 @@ A *Relation* indicates that one Assertion either supports or refutes another
 Assertion.
 
 Every Assertion has a *weight*, which is a derived measure of how true that
-Assertion is between 0 and 1, where 0 is false and 1 is true. An Assertion that
-has no Relations pointing to it is assumed to be true. Otherwise, the weight of
-an Assertion is derived from the support each incoming Relation provides, scaled
-by that Relation's own weight.
+Assertion is between 0 and 1, where 0 is false and 1 is true. An Assertion's
+weight is derived from any supporting or refuting relations. If there are none,
+an Assertion is assumed to be true.
 
 ```python
 # create a basic claim
@@ -52,6 +51,10 @@ print "Main Claim's Derived Weight: %s" % (c.get_weight(), )
 Now, the weird bit is that **Relations are Assertions**. That means
 **Relations** can support, refute, be supported by and be refuted by other
 Assertions.
+
+Additionally, the algorithm to derive an Assertion's weight also takes into
+account the weights of the Relations themselves, lending more credence to more
+heavily weighted Relations.
 
 ```python
 # continuing from above...
